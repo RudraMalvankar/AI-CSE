@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"; // Import Link here
 import Video from "./pages/video";
 import Audio from "./pages/audio";
 import Read from "./pages/read";
@@ -15,11 +15,11 @@ function App() {
               path="/"
               element={
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 p-4">
-                  {[
-                    { name: "VidyaLearn", desc: "Custom search engine for educational videos", link: "video" },
-                    { name: "AudioLearn", desc: "Custom search engine for educational audio", link: "Audio" },
-                    { name: "PDFSearch", desc: "Custom search engine for learning PDFs", link: "Read" },
-                    { name: "Science Exp", desc: "Custom search engine for science experiments", link: "Exp" }
+                  {[ 
+                    { name: "VidyaLearn", desc: "Custom search engine for educational videos", link: "/video" }, // Add "/" before the route
+                    { name: "AudioLearn", desc: "Custom search engine for educational audio", link: "/audio" }, // Add "/" before the route
+                    { name: "PDFSearch", desc: "Custom search engine for learning PDFs", link: "/read" }, // Add "/" before the route
+                    { name: "Science Exp", desc: "Custom search engine for science experiments", link: "/exp" } // Add "/" before the route
                   ].map((engine, index) => (
                     <div
                       key={index}
@@ -27,12 +27,12 @@ function App() {
                     >
                       <h2 className="text-3xl font-bold text-blue-400">{engine.name}</h2>
                       <p className="mt-4 text-gray-300 text-lg text-center">{engine.desc}</p>
-                      <a
-                        href={engine.link}
+                      <Link // Use Link here instead of <a>
+                        to={engine.link} // Use to instead of href
                         className="mt-6 bg-blue-500 text-white px-8 py-3 text-lg rounded-lg hover:bg-blue-600 transition duration-300"
                       >
                         Explore
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 </div>
